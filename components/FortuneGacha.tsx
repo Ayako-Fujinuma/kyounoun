@@ -118,9 +118,9 @@ export default function FortuneGacha() {
             <p className="mt-4 text-base leading-relaxed sm:text-lg">
               {result.message}
             </p>
-          </div>
 
-          <GrandmaComment image={result.grandmaImage} line={result.grandmaLine} />
+            <GrandmaComment image={result.grandmaImage} line={result.grandmaLine} />
+          </div>
 
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {result.categories.map((category) => (

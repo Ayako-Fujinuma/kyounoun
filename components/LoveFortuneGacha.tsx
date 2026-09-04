@@ -110,9 +110,9 @@ export default function LoveFortuneGacha() {
             <p className="mt-4 text-base leading-relaxed sm:text-lg">
               {result.message}
             </p>
-          </div>
 
-          <GrandmaComment image={result.grandmaImage} line={result.grandmaLine} />
+            <GrandmaComment image={result.grandmaImage} line={result.grandmaLine} />
+          </div>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             <div className="rounded-2xl border border-card-border bg-card-bg p-4">
