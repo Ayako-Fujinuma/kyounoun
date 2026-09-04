@@ -8,9 +8,12 @@ export default function Header() {
           <span aria-hidden>🔮</span>
           <span>今日の運勢ガチャ</span>
         </Link>
-        <nav className="flex gap-4 text-sm text-foreground-muted">
+        <nav className="flex flex-wrap justify-end gap-x-4 gap-y-1 text-sm text-foreground-muted">
           <Link href="/love" className="hover:text-accent">
             恋愛運占い
+          </Link>
+          <Link href="/money" className="hover:text-accent">
+            金運占い
           </Link>
           <Link href="/about" className="hover:text-accent">
             このサイトについて

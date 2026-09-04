@@ -361,3 +361,85 @@ export function generateLoveFortune(seed: number): LoveFortuneResult {
     adviceCrush: pick(ADVICE_CRUSH, rng),
   };
 }
+
+// 金運専用ガチャ
+
+export interface MoneyFortuneResult {
+  rank: RankKey;
+  emoji: string;
+  from: string;
+  to: string;
+  message: string;
+  adviceSpending: string;
+  adviceSaving: string;
+  adviceWindfall: string;
+}
+
+const MONEY_MESSAGES: Record<RankKey, string[]> = {
+  大吉: [
+    "金運は絶好調。臨時収入やお得な話が舞い込みやすい一日です。",
+    "欲しかったものを手に入れるのに最適なタイミング。良い買い物ができそう。",
+  ],
+  中吉: [
+    "金運は好調。堅実な判断がそのまま良い結果につながりそうです。",
+    "お得な情報が入ってきやすい日。アンテナを張っておくと良いことがあるかも。",
+  ],
+  小吉: [
+    "穏やかな金運。大きな動きはなくても、無駄遣いが減りやすい一日です。",
+    "家計を見直すと、小さな発見がありそうな日。",
+  ],
+  吉: [
+    "金運は安定モード。いつも通りの金銭感覚で過ごせば問題なし。",
+    "大きな出入りはなく、落ち着いてお金と向き合える一日です。",
+  ],
+  末吉: [
+    "最初は財布のひもが固くても、後半に嬉しい出費や収入がありそう。",
+    "今日は無理に動かず、様子を見るのが吉。焦って使わないように。",
+  ],
+  凶: [
+    "衝動買いに注意。今日の大きな買い物は先延ばしにするのが無難です。",
+    "お金の貸し借りやリスクの高い判断は避けたほうが良さそうな日。",
+  ],
+  大凶: [
+    "金運は波乱含み。契約や大きな支払いは今日を避けるのが安心です。",
+    "今日は財布を締めて、静かに過ごすのが一番。無理な出費はNG。",
+  ],
+};
+
+const ADVICE_SPENDING = [
+  "本当に必要なものかどうか、一晩考えてから購入すると安心。",
+  "セールやポイント還元のタイミングを狙うと得しやすい日。",
+  "外食や買い物は予算を決めてから出かけると失敗が少なそう。",
+  "「欲しい」より「必要」を基準に選ぶと後悔が少なそう。",
+];
+
+const ADVICE_SAVING = [
+  "家計簿やアプリで支出を見直すと、良い発見がありそう。",
+  "少額からでも貯蓄や積立を始めるのに向いている日。",
+  "サブスクなど固定費の見直しをすると節約につながりそう。",
+  "将来の目標を思い出しながらお金の使い方を見直してみて。",
+];
+
+const ADVICE_WINDFALL = [
+  "思わぬ形で臨時収入やプレゼントが舞い込むかも。",
+  "懸賞やポイント還元など、小さなラッキーに気づきやすい日。",
+  "誰かにご馳走してもらえるなど、嬉しい出来事があるかも。",
+  "フリマアプリなどで思わぬ収入が入るきっかけがありそう。",
+];
+
+export function generateMoneyFortune(seed: number): MoneyFortuneResult {
+  const rng = mulberry32(seed);
+  const rank = pickWeighted(RANKS, rng);
+  const message = pick(MONEY_MESSAGES[rank.key], rng);
+
+  return {
+    rank: rank.key,
+    emoji: rank.emoji,
+    from: rank.from,
+    to: rank.to,
+    message,
+    adviceSpending: pick(ADVICE_SPENDING, rng),
+    adviceSaving: pick(ADVICE_SAVING, rng),
+    adviceWindfall: pick(ADVICE_WINDFALL, rng),
+  };
+}

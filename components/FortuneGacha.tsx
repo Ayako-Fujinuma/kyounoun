@@ -18,6 +18,11 @@ function storageKey() {
   return `kyounoun:${todayKey()}`;
 }
 
+const CATEGORY_DETAIL_LINKS: Record<string, string> = {
+  恋愛運: "/love",
+  金運: "/money",
+};
+
 export default function FortuneGacha() {
   const [result, setResult] = useState<FortuneResult | null>(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -100,9 +105,9 @@ export default function FortuneGacha() {
                 key={category.label}
                 className="relative rounded-2xl border border-card-border bg-card-bg p-3 text-center"
               >
-                {category.label === "恋愛運" && (
+                {CATEGORY_DETAIL_LINKS[category.label] && (
                   <Link
-                    href="/love"
+                    href={CATEGORY_DETAIL_LINKS[category.label]}
                     className="absolute top-2 right-2 text-[10px] text-accent hover:underline"
                   >
                     詳しく見る›
