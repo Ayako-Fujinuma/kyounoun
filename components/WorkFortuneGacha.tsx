@@ -100,6 +100,9 @@ export default function WorkFortuneGacha() {
             <p className="mt-1 text-4xl font-black tracking-wide sm:text-5xl">
               {result.rank}
             </p>
+            <p className="mt-4 text-base leading-relaxed sm:text-lg">
+              {result.message}
+            </p>
             <p className="mt-4 text-xl font-black leading-snug sm:text-2xl">
               「{result.grandmaLine}」
             </p>
