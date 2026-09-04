@@ -55,7 +55,7 @@ export default function LoveFortuneGacha() {
       } catch {
         // 保存できなくても表示上は問題ない
       }
-    }, 1800);
+    }, 2600);
   };
 
   return (
@@ -68,7 +68,7 @@ export default function LoveFortuneGacha() {
           className="group relative flex h-40 w-40 items-center justify-center overflow-hidden rounded-full shadow-[0_0_40px_rgba(244,114,182,0.35)] transition active:scale-95 disabled:opacity-70 sm:h-48 sm:w-48"
         >
           <span
-            className={`absolute inset-0 ${isDrawing ? "animate-[spin_0.6s_linear_infinite]" : "group-hover:scale-110"} transition`}
+            className={`absolute inset-0 ${isDrawing ? "animate-[spin_0.5s_linear_infinite]" : "group-hover:scale-110"} transition`}
           >
             <Image
               src="/images/icons/love.jpg"
