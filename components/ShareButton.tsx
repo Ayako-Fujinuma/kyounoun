@@ -36,7 +36,7 @@ export default function ShareButton({ text }: ShareButtonProps) {
       onClick={handleShare}
       className="rounded-full border border-accent/60 px-6 py-2 text-sm text-accent transition hover:bg-accent hover:text-slate-900"
     >
-      {copied ? "コピーしました!" : "結果をSNSに投稿"}
+      {copied ? "コピーしました!" : "結果をシェアする"}
     </button>
   );
 }
