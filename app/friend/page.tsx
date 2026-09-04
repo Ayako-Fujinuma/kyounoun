@@ -4,9 +4,9 @@ import NameFortuneGacha from "@/components/NameFortuneGacha";
 import BackHomeLink from "@/components/BackHomeLink";
 
 export const metadata: Metadata = {
-  title: "だれかの今日の運勢占い｜名前を入れて無料でわかる",
+  title: "あの人の今日の運勢占い｜名前を入れて無料でわかる",
   description:
-    "気になるあの人や友達の今日の運勢を、名前を入れるだけで無料で占えます。同じ名前なら今日は同じ結果が出る、名前占いガチャです。",
+    "頭に浮かんだあの人の今日の運勢を、名前を入れるだけでこっそり占えます。本人には内緒で、無料でのぞいてみませんか?",
   alternates: {
     canonical: "/friend",
   },
@@ -30,10 +30,10 @@ export default function FriendPage() {
           {dateLabel}の運勢
         </p>
         <h1 className="mt-3 text-2xl font-bold sm:text-3xl">
-          だれかの今日の運勢占い｜名前占いガチャ
+          あの人の今日の運勢占い｜名前占いガチャ
         </h1>
         <p className="mt-3 text-sm text-foreground-muted">
-          自分だけでなく、気になるあの人や友達の今日の運勢も名前を入れるだけで占えます。
+          今、頭に浮かんだその人の名前を入れてみてください。ばあばがこっそり教えてくれます。
         </p>
       </section>
 
@@ -43,10 +43,10 @@ export default function FriendPage() {
 
       <section className="mt-16 space-y-4 text-sm leading-relaxed text-foreground-muted">
         <h2 className="text-lg font-bold text-foreground">
-          だれかの今日の運勢占いとは
+          あの人の今日の運勢占いとは
         </h2>
         <p>
-          「だれかの今日の運勢占い」は、名前を入力するだけでその人の今日の運勢を占える無料ガチャです。同じ名前であれば今日は何度占っても同じ結果が表示されるので、友達や家族、気になるあの人の運勢をこっそりチェックするのに使えます。自分自身の運勢を占いたい方は、
+          「あの人の今日の運勢占い」は、名前を入力するだけでその人の今日の運勢をこっそりのぞける無料ガチャです。友達や家族はもちろん、気になっているあの人、ちょっと苦手なあの人まで、本人に知られることなく占えます。同じ名前であれば今日は何度占っても同じ結果が表示されます。自分自身の運勢を占いたい方は、
           <Link href="/" className="text-accent hover:underline">
             今日の運勢ガチャ(トップページ)
           </Link>

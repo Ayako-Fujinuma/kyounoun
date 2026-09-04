@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import GrandmaComment from "@/components/GrandmaComment";
+import ShareButton from "@/components/ShareButton";
 import {
   generateFortune,
   seedFromString,
@@ -36,7 +37,7 @@ export default function NameFortuneGacha() {
       setResult(generateFortune(seed));
       setRevealedName(trimmed);
       setIsDrawing(false);
-    }, 1800);
+    }, 2600);
   };
 
   const reset = () => {
@@ -50,7 +51,7 @@ export default function NameFortuneGacha() {
         <>
           <div className="w-full max-w-xs">
             <label htmlFor="friend-name" className="text-sm text-foreground-muted">
-              占いたい人の名前
+              気になるあの人の名前
             </label>
             <input
               id="friend-name"
@@ -58,7 +59,7 @@ export default function NameFortuneGacha() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && draw()}
-              placeholder="例: たなかさん"
+              placeholder="頭に浮かんだ名前を…"
               maxLength={20}
               className="mt-1 w-full rounded-xl border border-card-border bg-card-bg px-3 py-2 text-sm outline-none focus:border-accent"
             />
@@ -84,7 +85,7 @@ export default function NameFortuneGacha() {
           </button>
 
           <p className="text-foreground-muted">
-            {isDrawing ? "占っています..." : "名前を入れてタップ"}
+            {isDrawing ? "そっとのぞいています..." : "名前を入れてタップ"}
           </p>
         </>
       )}
@@ -160,7 +161,7 @@ export default function NameFortuneGacha() {
             </div>
           </div>
 
-          <div className="mt-6 flex justify-center">
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
             <button
               type="button"
               onClick={reset}
@@ -168,6 +169,9 @@ export default function NameFortuneGacha() {
             >
               別の人を占う
             </button>
+            <ShareButton
+              text={`${revealedName}さんの今日の運勢は「${result.rank}」でした!占いババァいわく「${result.grandmaLine}」`}
+            />
           </div>
 
           <p className="mt-3 text-center text-xs text-foreground-muted">

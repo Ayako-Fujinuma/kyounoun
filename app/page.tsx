@@ -1,6 +1,5 @@
 import Link from "next/link";
 import FortuneGacha from "@/components/FortuneGacha";
-import { rankMeanings } from "@/lib/fortune";
 
 export default function Home() {
   const today = new Date();
@@ -18,7 +17,7 @@ export default function Home() {
           {dateLabel}の運勢
         </p>
         <h1 className="mt-3 text-2xl font-bold sm:text-3xl">
-          今日の運勢占い｜無料の運勢ガチャ
+          占いババァが占う、今日の運勢ガチャ
         </h1>
         <p className="mt-3 text-sm text-foreground-muted">
           ボタンをタップするだけで、総合運・恋愛運・仕事運・金運・健康運がまとめてわかります。
@@ -36,30 +35,6 @@ export default function Home() {
         <p>
           「今日の運勢ガチャ」は、おみくじのようにボタン一つで今日の運勢を占える無料占いサイトです。総合運は大吉・中吉・小吉・吉・末吉・凶・大凶の7段階で判定され、あわせて恋愛運・仕事運・金運・健康運の4カテゴリ、ラッキーカラー・ラッキーアイテム・ラッキーナンバーも表示されます。会員登録は不要で、毎日何度でも無料で楽しめます。
         </p>
-      </section>
-
-      <section className="mt-10">
-        <h2 className="text-lg font-bold text-foreground">運勢ランクの意味</h2>
-        <div className="mt-4 overflow-hidden rounded-2xl border border-card-border">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-card-bg text-foreground-muted">
-              <tr>
-                <th className="px-4 py-2 font-medium">ランク</th>
-                <th className="px-4 py-2 font-medium">読み方</th>
-                <th className="px-4 py-2 font-medium">意味</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-card-border">
-              {rankMeanings().map((rank) => (
-                <tr key={rank.key}>
-                  <td className="px-4 py-2 font-bold text-accent">{rank.key}</td>
-                  <td className="px-4 py-2 text-foreground-muted">{rank.reading}</td>
-                  <td className="px-4 py-2 text-foreground-muted">{rank.summary}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
       </section>
 
       <section className="mt-10 text-center">

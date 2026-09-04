@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import GrandmaComment from "@/components/GrandmaComment";
+import ShareButton from "@/components/ShareButton";
 import {
   generateMoneyFortune,
   seedFromString,
@@ -123,7 +124,7 @@ export default function MoneyFortuneGacha() {
             </div>
           </div>
 
-          <div className="mt-6 flex justify-center">
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
             <button
               type="button"
               onClick={draw}
@@ -132,6 +133,9 @@ export default function MoneyFortuneGacha() {
             >
               {isDrawing ? "占い直しています..." : "もう一度引く"}
             </button>
+            <ShareButton
+              text={`今日の金運は「${result.rank}」でした!占いババァいわく「${result.grandmaLine}」`}
+            />
           </div>
 
           {hasDrawnToday && (

@@ -10,7 +10,7 @@ const CATEGORY_LINKS = [
   { href: "/money", label: "金運占い", icon: "💰" },
   { href: "/work", label: "仕事運占い", icon: "💼" },
   { href: "/health", label: "健康運占い", icon: "🌿" },
-  { href: "/friend", label: "だれかを占う", icon: "👤" },
+  { href: "/friend", label: "あの人を占う", icon: "👁️" },
 ];
 
 export default function Header() {
@@ -40,7 +40,7 @@ export default function Header() {
           </div>
         </div>
 
-        <nav className="mt-3 flex gap-2 overflow-x-auto pb-3 sm:justify-center [&::-webkit-scrollbar]:hidden">
+        <nav className="mt-3 flex gap-2 overflow-x-auto pb-3 [&::-webkit-scrollbar]:hidden">
           {CATEGORY_LINKS.map((item) => {
             const isActive = pathname === item.href;
             return (
