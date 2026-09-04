@@ -15,13 +15,13 @@ const siteUrl = "https://kyounoun.vercel.app";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "今日の運勢占い｜無料の運勢ガチャで今日のあなたを診断",
+    default: "今日の運勢占い｜無料の運勢ガチャ｜今日のあなたを占いババァが診断します",
     template: "%s｜今日の運勢ガチャ",
   },
   description:
     "今日の運勢を無料のガチャ形式で診断!総合運・恋愛運・仕事運・金運・健康運に加え、ラッキーカラーやラッキーアイテムもわかる毎日更新の運勢占いサイトです。",
   openGraph: {
-    title: "今日の運勢占い｜無料の運勢ガチャで今日のあなたを診断",
+    title: "今日の運勢占い｜無料の運勢ガチャ｜今日のあなたを占いババァが診断します",
     description:
       "ボタンを押すだけで今日の運勢がわかる無料の占いサイト。恋愛運・仕事運・金運・健康運もまとめてチェック。",
     url: siteUrl,
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "今日の運勢占い｜無料の運勢ガチャで今日のあなたを診断",
+    title: "今日の運勢占い｜無料の運勢ガチャ｜今日のあなたを占いババァが診断します",
     description:
       "ボタンを押すだけで今日の運勢がわかる無料の占いサイト。恋愛運・仕事運・金運・健康運もまとめてチェック。",
     images: ["/images/ogp.jpeg"],

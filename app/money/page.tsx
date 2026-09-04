@@ -4,7 +4,7 @@ import MoneyFortuneGacha from "@/components/MoneyFortuneGacha";
 import BackHomeLink from "@/components/BackHomeLink";
 
 export const metadata: Metadata = {
-  title: "今日の金運占い｜無料ガチャで今日の金運がわかる",
+  title: "今日の金運占い｜占いババァが今日の金運を無料診断",
   description:
     "今日の金運を無料のガチャ形式で診断。使い方のヒント・貯蓄の見直し・ラッキーな出来事のアドバイス付きで、毎日無料で楽しめる金運占いです。",
   alternates: {
@@ -30,7 +30,7 @@ export default function MoneyPage() {
           {dateLabel}の金運
         </p>
         <h1 className="mt-3 text-2xl font-bold sm:text-3xl">
-          今日の金運占い｜無料の金運ガチャ
+          占いババァが占う｜今日の金運
         </h1>
         <p className="mt-3 text-sm text-foreground-muted">
           使い方のヒント・貯蓄の見直し・ラッキーな出来事のアドバイス付きで今日の金運がわかります。

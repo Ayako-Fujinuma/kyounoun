@@ -4,7 +4,7 @@ import NameFortuneGacha from "@/components/NameFortuneGacha";
 import BackHomeLink from "@/components/BackHomeLink";
 
 export const metadata: Metadata = {
-  title: "あの人の今日の運勢占い｜名前を入れて無料でわかる",
+  title: "あの人の今日の運勢占い｜占いババァが名前だけで無料診断",
   description:
     "頭に浮かんだあの人の今日の運勢を、名前を入れるだけでこっそり占えます。本人には内緒で、無料でのぞいてみませんか?",
   alternates: {
@@ -30,7 +30,7 @@ export default function FriendPage() {
           {dateLabel}の運勢
         </p>
         <h1 className="mt-3 text-2xl font-bold sm:text-3xl">
-          あの人の今日の運勢占い｜名前占いガチャ
+          占いババァが占う｜あの人の今日の運勢
         </h1>
         <p className="mt-3 text-sm text-foreground-muted">
           今、頭に浮かんだその人の名前を入れてみてください。ばあばがこっそり教えてくれます。

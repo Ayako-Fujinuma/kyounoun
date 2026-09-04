@@ -17,7 +17,7 @@ export default function Home() {
           {dateLabel}の運勢
         </p>
         <h1 className="mt-3 text-2xl font-bold sm:text-3xl">
-          占いババァが占う、今日の運勢ガチャ
+          占いババァが占う｜今日の運勢
         </h1>
         <p className="mt-3 text-sm text-foreground-muted">
           ボタンをタップするだけで、総合運・恋愛運・仕事運・金運・健康運がまとめてわかります。
