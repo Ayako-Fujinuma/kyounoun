@@ -9,11 +9,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/money",
     "/work",
     "/health",
+    "/friend",
+    "/faq",
     "/about",
     "/privacy",
     "/contact",
   ];
-  const dailyRoutes = new Set(["", "/love", "/money", "/work", "/health"]);
+  const dailyRoutes = new Set([
+    "",
+    "/love",
+    "/money",
+    "/work",
+    "/health",
+    "/friend",
+  ]);
   return routes.map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: new Date(),

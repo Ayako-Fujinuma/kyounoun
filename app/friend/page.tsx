@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import HealthFortuneGacha from "@/components/HealthFortuneGacha";
+import NameFortuneGacha from "@/components/NameFortuneGacha";
 import BackHomeLink from "@/components/BackHomeLink";
 
 export const metadata: Metadata = {
-  title: "今日の健康運占い｜無料ガチャで今日の健康運がわかる",
+  title: "あの人の今日の運勢占い｜名前を入れて無料でわかる",
   description:
-    "今日の健康運を無料のガチャ形式で診断。体調管理・食事や睡眠・リフレッシュ方法のアドバイス付きで、毎日無料で楽しめる健康運占いです。",
+    "頭に浮かんだあの人の今日の運勢を、名前を入れるだけでこっそり占えます。本人には内緒で、無料でのぞいてみませんか?",
   alternates: {
-    canonical: "/health",
+    canonical: "/friend",
   },
 };
 
-export default function HealthPage() {
+export default function FriendPage() {
   const today = new Date();
   const dateLabel = new Intl.DateTimeFormat("ja-JP", {
     year: "numeric",
@@ -27,30 +27,30 @@ export default function HealthPage() {
 
       <section className="text-center">
         <p className="text-xl font-bold text-accent sm:text-2xl">
-          {dateLabel}の健康運
+          {dateLabel}の運勢
         </p>
         <h1 className="mt-3 text-2xl font-bold sm:text-3xl">
-          今日の健康運占い｜無料の健康運ガチャ
+          あの人の今日の運勢占い｜名前占いガチャ
         </h1>
         <p className="mt-3 text-sm text-foreground-muted">
-          体調管理・食事や睡眠・リフレッシュ方法のアドバイス付きで今日の健康運がわかります。
+          今、頭に浮かんだその人の名前を入れてみてください。ばあばがこっそり教えてくれます。
         </p>
       </section>
 
       <section className="mt-10">
-        <HealthFortuneGacha />
+        <NameFortuneGacha />
       </section>
 
       <section className="mt-16 space-y-4 text-sm leading-relaxed text-foreground-muted">
         <h2 className="text-lg font-bold text-foreground">
-          今日の健康運占いとは
+          あの人の今日の運勢占いとは
         </h2>
         <p>
-          「今日の健康運占い」は、今日の健康運だけにフォーカスした無料の占いガチャです。総合運・恋愛運・仕事運・金運もまとめて知りたい方は、
+          「あの人の今日の運勢占い」は、名前を入力するだけでその人の今日の運勢をこっそりのぞける無料ガチャです。友達や家族はもちろん、気になっているあの人、ちょっと苦手なあの人まで、本人に知られることなく占えます。同じ名前であれば今日は何度占っても同じ結果が表示されます。自分自身の運勢を占いたい方は、
           <Link href="/" className="text-accent hover:underline">
             今日の運勢ガチャ(トップページ)
           </Link>
-          もあわせてチェックしてみてください。
+          をご利用ください。
         </p>
       </section>
 

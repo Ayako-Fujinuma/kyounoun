@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import GrandmaComment from "@/components/GrandmaComment";
+import ShareButton from "@/components/ShareButton";
 import {
   generateHealthFortune,
   seedFromString,
@@ -93,21 +95,17 @@ export default function HealthFortuneGacha() {
           <div
             className={`rounded-3xl border border-card-border bg-gradient-to-br ${result.from} ${result.to} p-6 text-center text-slate-900 shadow-xl sm:p-8`}
           >
-            <p className="text-sm font-medium opacity-70">今日の健康運</p>
-            <div className="relative mx-auto mt-2 h-24 w-24 overflow-hidden rounded-full shadow-lg sm:h-28 sm:w-28">
-              <Image
-                src={result.image}
-                alt={`今日の健康運: ${result.rank}`}
-                fill
-                sizes="112px"
-                className="object-cover"
-              />
-            </div>
-            <p className="mt-2 text-4xl font-black tracking-wide sm:text-5xl">
+            <GrandmaComment image={result.grandmaImage} />
+
+            <p className="mt-4 text-sm font-medium opacity-70">今日の健康運</p>
+            <p className="mt-1 text-4xl font-black tracking-wide sm:text-5xl">
               {result.rank}
             </p>
             <p className="mt-4 text-base leading-relaxed sm:text-lg">
               {result.message}
+            </p>
+            <p className="mt-4 text-xl font-black leading-snug sm:text-2xl">
+              「{result.grandmaLine}」
             </p>
           </div>
 
@@ -126,7 +124,7 @@ export default function HealthFortuneGacha() {
             </div>
           </div>
 
-          <div className="mt-6 flex justify-center">
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
             <button
               type="button"
               onClick={draw}
@@ -135,6 +133,9 @@ export default function HealthFortuneGacha() {
             >
               {isDrawing ? "占い直しています..." : "もう一度引く"}
             </button>
+            <ShareButton
+              text={`今日の健康運は「${result.rank}」でした!占いババァいわく「${result.grandmaLine}」`}
+            />
           </div>
 
           {hasDrawnToday && (

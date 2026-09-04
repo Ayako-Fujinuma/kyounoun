@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import GrandmaComment from "@/components/GrandmaComment";
@@ -12,15 +12,6 @@ import {
   type FortuneResult,
 } from "@/lib/fortune";
 
-interface StoredFortune {
-  date: string;
-  seed: number;
-}
-
-function storageKey() {
-  return `kyounoun:${todayKey()}`;
-}
-
 const CATEGORY_DETAIL_LINKS: Record<string, string> = {
   恋愛運: "/love",
   仕事運: "/work",
@@ -28,74 +19,75 @@ const CATEGORY_DETAIL_LINKS: Record<string, string> = {
   健康運: "/health",
 };
 
-export default function FortuneGacha() {
+export default function NameFortuneGacha() {
+  const [name, setName] = useState("");
+  const [revealedName, setRevealedName] = useState("");
   const [result, setResult] = useState<FortuneResult | null>(null);
   const [isDrawing, setIsDrawing] = useState(false);
-  const [hasDrawnToday, setHasDrawnToday] = useState(false);
 
-  useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem(storageKey());
-      if (raw) {
-        const stored: StoredFortune = JSON.parse(raw);
-        // SSRでは window がないため、マウント後に一度だけ localStorage から復元する
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setResult(generateFortune(stored.seed));
-        setHasDrawnToday(true);
-      }
-    } catch {
-      // localStorageが使えない環境では毎回ガチャを引く形にフォールバック
-    }
-  }, []);
+  const canDraw = name.trim().length > 0;
 
   const draw = () => {
+    const trimmed = name.trim();
+    if (!trimmed || isDrawing) return;
     setIsDrawing(true);
     setResult(null);
     window.setTimeout(() => {
-      const seed = seedFromString(todayKey()) ^ (Date.now() & 0xffffffff);
-      const fortune = generateFortune(seed);
-      setResult(fortune);
-      setHasDrawnToday(true);
+      const seed = seedFromString(`friend:${trimmed}:${todayKey()}`);
+      setResult(generateFortune(seed));
+      setRevealedName(trimmed);
       setIsDrawing(false);
-      try {
-        window.localStorage.setItem(
-          storageKey(),
-          JSON.stringify({ date: todayKey(), seed } satisfies StoredFortune),
-        );
-      } catch {
-        // 保存できなくても表示上は問題ない
-      }
     }, 2600);
+  };
+
+  const reset = () => {
+    setResult(null);
+    setName("");
   };
 
   return (
     <div className="flex flex-col items-center gap-6">
       {!result && (
-        <button
-          type="button"
-          onClick={draw}
-          disabled={isDrawing}
-          className="group relative flex h-40 w-40 items-center justify-center overflow-hidden rounded-full shadow-[0_0_40px_rgba(244,201,93,0.35)] transition active:scale-95 disabled:opacity-70 sm:h-48 sm:w-48"
-        >
-          <span
-            className={`absolute inset-0 ${isDrawing ? "animate-[spin_1.2s_linear_infinite]" : "group-hover:scale-110"} transition`}
-          >
-            <Image
-              src="/images/icons/overall.jpg"
-              alt="今日の運勢を占う"
-              fill
-              sizes="(min-width: 640px) 192px, 160px"
-              className="object-cover"
-              priority
+        <>
+          <div className="w-full max-w-xs">
+            <label htmlFor="friend-name" className="text-sm text-foreground-muted">
+              気になるあの人の名前
+            </label>
+            <input
+              id="friend-name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && draw()}
+              placeholder="頭に浮かんだ名前を…"
+              maxLength={20}
+              className="mt-1 w-full rounded-xl border border-card-border bg-card-bg px-3 py-2 text-sm outline-none focus:border-accent"
             />
-          </span>
-        </button>
-      )}
+          </div>
 
-      {!result && (
-        <p className="text-foreground-muted">
-          {isDrawing ? "運勢を占っています..." : "タップして今日の運勢を占う"}
-        </p>
+          <button
+            type="button"
+            onClick={draw}
+            disabled={isDrawing || !canDraw}
+            className="group relative flex h-40 w-40 items-center justify-center overflow-hidden rounded-full shadow-[0_0_40px_rgba(244,201,93,0.35)] transition active:scale-95 disabled:opacity-40 sm:h-48 sm:w-48"
+          >
+            <span
+              className={`absolute inset-0 ${isDrawing ? "animate-[spin_1.2s_linear_infinite]" : "group-hover:scale-110"} transition`}
+            >
+              <Image
+                src="/images/icons/overall.jpg"
+                alt="名前を入れて占う"
+                fill
+                sizes="(min-width: 640px) 192px, 160px"
+                className="object-cover"
+              />
+            </span>
+          </button>
+
+          <p className="text-foreground-muted">
+            {isDrawing ? "そっとのぞいています..." : "名前を入れてタップ"}
+          </p>
+        </>
       )}
 
       {result && (
@@ -105,7 +97,9 @@ export default function FortuneGacha() {
           >
             <GrandmaComment image={result.grandmaImage} />
 
-            <p className="mt-4 text-sm font-medium opacity-70">今日の運勢</p>
+            <p className="mt-4 text-sm font-medium opacity-70">
+              {revealedName}さんの今日の運勢
+            </p>
             <p className="mt-1 text-4xl font-black tracking-wide sm:text-5xl">
               {result.rank}
             </p>
@@ -170,22 +164,19 @@ export default function FortuneGacha() {
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <button
               type="button"
-              onClick={draw}
-              disabled={isDrawing}
-              className="rounded-full border border-accent/60 px-6 py-2 text-sm text-accent transition hover:bg-accent hover:text-slate-900 disabled:opacity-60"
+              onClick={reset}
+              className="rounded-full border border-accent/60 px-6 py-2 text-sm text-accent transition hover:bg-accent hover:text-slate-900"
             >
-              {isDrawing ? "占い直しています..." : "もう一度引く"}
+              別の人を占う
             </button>
             <ShareButton
-              text={`今日の運勢は「${result.rank}」でした!占いババァいわく「${result.grandmaLine}」`}
+              text={`${revealedName}さんの今日の運勢は「${result.rank}」でした!占いババァいわく「${result.grandmaLine}」`}
             />
           </div>
 
-          {hasDrawnToday && (
-            <p className="mt-3 text-center text-xs text-foreground-muted">
-              今日引いた運勢はこの端末に保存され、次に開いたときも同じ結果が表示されます。
-            </p>
-          )}
+          <p className="mt-3 text-center text-xs text-foreground-muted">
+            同じ名前で今日もう一度占うと、同じ結果が表示されます。
+          </p>
         </div>
       )}
     </div>
