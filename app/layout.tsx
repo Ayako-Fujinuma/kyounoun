@@ -30,10 +30,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/ogp.jpeg",
-        width: 1376,
+        url: "/images/icons/grandma-group.jpeg",
+        width: 1408,
         height: 768,
-        alt: "今日の運勢ガチャ",
+        alt: "占いババァ",
       },
     ],
   },
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "今日の運勢占い｜無料の運勢ガチャ｜今日のあなたを占いババァが診断します",
     description:
       "ボタンを押すだけで今日の運勢がわかる無料の占いサイト。恋愛運・仕事運・金運・健康運もまとめてチェック。",
-    images: ["/images/ogp.jpeg"],
+    images: ["/images/icons/grandma-group.jpeg"],
   },
   alternates: {
     canonical: "/",
