@@ -4,7 +4,7 @@ import NameFortuneGacha from "@/components/NameFortuneGacha";
 import BackHomeLink from "@/components/BackHomeLink";
 
 export const metadata: Metadata = {
-  title: "あの人の今日の運勢占い｜名前を入れて無料でわかる",
+  title: "あの人の今日の運勢占い｜占いババァが名前だけで無料診断",
   description:
     "頭に浮かんだあの人の今日の運勢を、名前を入れるだけでこっそり占えます。本人には内緒で、無料でのぞいてみませんか?",
   alternates: {

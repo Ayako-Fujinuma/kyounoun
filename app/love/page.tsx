@@ -4,7 +4,7 @@ import LoveFortuneGacha from "@/components/LoveFortuneGacha";
 import BackHomeLink from "@/components/BackHomeLink";
 
 export const metadata: Metadata = {
-  title: "今日の恋愛運占い｜無料ガチャで今日の恋愛運がわかる",
+  title: "今日の恋愛運占い｜占いババァが今日の恋愛運を無料診断",
   description:
     "今日の恋愛運を無料のガチャ形式で診断。フリーの方・カップルの方・片思い中の方それぞれへのアドバイス付きで、毎日無料で楽しめる恋愛運占いです。",
   alternates: {

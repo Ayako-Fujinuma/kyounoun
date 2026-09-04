@@ -4,7 +4,7 @@ import HealthFortuneGacha from "@/components/HealthFortuneGacha";
 import BackHomeLink from "@/components/BackHomeLink";
 
 export const metadata: Metadata = {
-  title: "今日の健康運占い｜無料ガチャで今日の健康運がわかる",
+  title: "今日の健康運占い｜占いババァが今日の健康運を無料診断",
   description:
     "今日の健康運を無料のガチャ形式で診断。体調管理・食事や睡眠・リフレッシュ方法のアドバイス付きで、毎日無料で楽しめる健康運占いです。",
   alternates: {

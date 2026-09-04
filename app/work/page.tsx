@@ -4,7 +4,7 @@ import WorkFortuneGacha from "@/components/WorkFortuneGacha";
 import BackHomeLink from "@/components/BackHomeLink";
 
 export const metadata: Metadata = {
-  title: "今日の仕事運占い｜無料ガチャで今日の仕事運がわかる",
+  title: "今日の仕事運占い｜占いババァが今日の仕事運を無料診断",
   description:
     "今日の仕事運を無料のガチャ形式で診断。集中力のヒント・人間関係・チャンスをつかむためのアドバイス付きで、毎日無料で楽しめる仕事運占いです。",
   alternates: {
