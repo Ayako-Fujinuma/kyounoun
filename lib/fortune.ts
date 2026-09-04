@@ -36,6 +36,8 @@ export interface FortuneResult {
   luckyColor: { name: string; hex: string };
   luckyItem: string;
   luckyNumber: number;
+  grandmaImage: string;
+  grandmaLine: string;
 }
 
 const RANKS: RankInfo[] = [
@@ -159,6 +161,60 @@ const RANKS: RankInfo[] = [
     ],
   },
 ];
+
+export const GRANDMA_NAME = "うらないばあば";
+
+const GRANDMA: Record<RankKey, { image: string; lines: string[] }> = {
+  大吉: {
+    image: "/images/icons/grandma/grandma_daikichi.jpeg",
+    lines: [
+      "ほっほっほ、今日のお前さんは絶好調じゃのう!ばあばの見立て、外れたことなしじゃて。",
+      "こりゃ大当たりじゃ!調子に乗ってどんどん動いてみるといいのじゃ。",
+    ],
+  },
+  中吉: {
+    image: "/images/icons/grandma/grandma_chukichi.jpeg",
+    lines: [
+      "ふふ、なかなか良い流れが来ておるのう。調子に乗りすぎるでないぞ?",
+      "悪くない運じゃ。せいぜい喜んでおくのじゃな。",
+    ],
+  },
+  小吉: {
+    image: "/images/icons/grandma/grandma_shokichi.jpeg",
+    lines: [
+      "まあまあの運じゃな。贅沢言わず、ありがたく受け取っておくのじゃ。",
+      "地味じゃが悪くないぞ。それが分かっておらんお前さんではないじゃろ?",
+    ],
+  },
+  吉: {
+    image: "/images/icons/grandma/grandma_kichi.jpeg",
+    lines: [
+      "ふむ…可もなく不可もなく、といったところじゃな。ばあばも退屈じゃわい。",
+      "普通の運じゃ。まあ、こういう日があるから明日が楽しみになるんじゃて。",
+    ],
+  },
+  末吉: {
+    image: "/images/icons/grandma/grandma_suekichi.jpeg",
+    lines: [
+      "今は冴えんのう。じゃが後でひっくり返るかもしれんぞ?ふふ、楽しみじゃのう。",
+      "焦るでない。ばあばには最後に笑うのが見えておるからのう。",
+    ],
+  },
+  凶: {
+    image: "/images/icons/grandma/grandma_kyo.jpeg",
+    lines: [
+      "おやおや、今日は気をつけるのじゃぞ?…ふふ、まあ自業自得というやつじゃな。",
+      "少し意地悪な運じゃのう。でもばあば、教えてやっただけ優しいじゃろ?",
+    ],
+  },
+  大凶: {
+    image: "/images/icons/grandma/grandma_daikyo.jpeg",
+    lines: [
+      "げっほっほ!こりゃまた派手にやらかしたのう!今日は大人しくしておくのじゃ。",
+      "ふふふ…こういう日もあるさ。ばあばの言うことを聞いておけば間違いないぞ。",
+    ],
+  },
+};
 
 const CATEGORY_COMMENTS: Record<string, string[]> = {
   恋愛運: [
@@ -314,6 +370,8 @@ export function generateFortune(seed: number): FortuneResult {
     }),
   );
 
+  const grandma = GRANDMA[rank.key];
+
   return {
     rank: rank.key,
     image: rank.image,
@@ -324,6 +382,8 @@ export function generateFortune(seed: number): FortuneResult {
     luckyColor: pick(LUCKY_COLORS, rng),
     luckyItem: pick(LUCKY_ITEMS, rng),
     luckyNumber: Math.floor(rng() * 99) + 1,
+    grandmaImage: grandma.image,
+    grandmaLine: pick(grandma.lines, rng),
   };
 }
 
@@ -342,6 +402,8 @@ export interface LoveFortuneResult {
   adviceFree: string;
   adviceCouple: string;
   adviceCrush: string;
+  grandmaImage: string;
+  grandmaLine: string;
 }
 
 const LOVE_MESSAGES: Record<RankKey, string[]> = {
@@ -423,6 +485,7 @@ export function generateLoveFortune(seed: number): LoveFortuneResult {
   const rng = mulberry32(seed);
   const rank = pickWeighted(RANKS, rng);
   const message = pick(LOVE_MESSAGES[rank.key], rng);
+  const grandma = GRANDMA[rank.key];
 
   return {
     rank: rank.key,
@@ -433,6 +496,8 @@ export function generateLoveFortune(seed: number): LoveFortuneResult {
     adviceFree: pick(ADVICE_FREE, rng),
     adviceCouple: pick(ADVICE_COUPLE, rng),
     adviceCrush: pick(ADVICE_CRUSH, rng),
+    grandmaImage: grandma.image,
+    grandmaLine: pick(grandma.lines, rng),
   };
 }
 
@@ -447,6 +512,8 @@ export interface MoneyFortuneResult {
   adviceSpending: string;
   adviceSaving: string;
   adviceWindfall: string;
+  grandmaImage: string;
+  grandmaLine: string;
 }
 
 const MONEY_MESSAGES: Record<RankKey, string[]> = {
@@ -528,6 +595,7 @@ export function generateMoneyFortune(seed: number): MoneyFortuneResult {
   const rng = mulberry32(seed);
   const rank = pickWeighted(RANKS, rng);
   const message = pick(MONEY_MESSAGES[rank.key], rng);
+  const grandma = GRANDMA[rank.key];
 
   return {
     rank: rank.key,
@@ -538,6 +606,8 @@ export function generateMoneyFortune(seed: number): MoneyFortuneResult {
     adviceSpending: pick(ADVICE_SPENDING, rng),
     adviceSaving: pick(ADVICE_SAVING, rng),
     adviceWindfall: pick(ADVICE_WINDFALL, rng),
+    grandmaImage: grandma.image,
+    grandmaLine: pick(grandma.lines, rng),
   };
 }
 
@@ -552,6 +622,8 @@ export interface WorkFortuneResult {
   adviceFocus: string;
   adviceRelationship: string;
   adviceChance: string;
+  grandmaImage: string;
+  grandmaLine: string;
 }
 
 const WORK_MESSAGES: Record<RankKey, string[]> = {
@@ -633,6 +705,7 @@ export function generateWorkFortune(seed: number): WorkFortuneResult {
   const rng = mulberry32(seed);
   const rank = pickWeighted(RANKS, rng);
   const message = pick(WORK_MESSAGES[rank.key], rng);
+  const grandma = GRANDMA[rank.key];
 
   return {
     rank: rank.key,
@@ -643,6 +716,8 @@ export function generateWorkFortune(seed: number): WorkFortuneResult {
     adviceFocus: pick(ADVICE_FOCUS, rng),
     adviceRelationship: pick(ADVICE_RELATIONSHIP, rng),
     adviceChance: pick(ADVICE_CHANCE, rng),
+    grandmaImage: grandma.image,
+    grandmaLine: pick(grandma.lines, rng),
   };
 }
 
@@ -657,6 +732,8 @@ export interface HealthFortuneResult {
   adviceBody: string;
   adviceLifestyle: string;
   adviceRefresh: string;
+  grandmaImage: string;
+  grandmaLine: string;
 }
 
 const HEALTH_MESSAGES: Record<RankKey, string[]> = {
@@ -738,6 +815,7 @@ export function generateHealthFortune(seed: number): HealthFortuneResult {
   const rng = mulberry32(seed);
   const rank = pickWeighted(RANKS, rng);
   const message = pick(HEALTH_MESSAGES[rank.key], rng);
+  const grandma = GRANDMA[rank.key];
 
   return {
     rank: rank.key,
@@ -748,5 +826,7 @@ export function generateHealthFortune(seed: number): HealthFortuneResult {
     adviceBody: pick(ADVICE_BODY, rng),
     adviceLifestyle: pick(ADVICE_LIFESTYLE, rng),
     adviceRefresh: pick(ADVICE_REFRESH, rng),
+    grandmaImage: grandma.image,
+    grandmaLine: pick(grandma.lines, rng),
   };
 }

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import GrandmaComment from "@/components/GrandmaComment";
 import {
   generateFortune,
   seedFromString,
@@ -118,6 +119,8 @@ export default function FortuneGacha() {
               {result.message}
             </p>
           </div>
+
+          <GrandmaComment image={result.grandmaImage} line={result.grandmaLine} />
 
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {result.categories.map((category) => (

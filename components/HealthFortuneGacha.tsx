@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import GrandmaComment from "@/components/GrandmaComment";
 import {
   generateHealthFortune,
   seedFromString,
@@ -110,6 +111,8 @@ export default function HealthFortuneGacha() {
               {result.message}
             </p>
           </div>
+
+          <GrandmaComment image={result.grandmaImage} line={result.grandmaLine} />
 
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             <div className="rounded-2xl border border-card-border bg-card-bg p-4">
