@@ -30,7 +30,7 @@ export default function HealthPage() {
           {dateLabel}の健康運
         </p>
         <h1 className="mt-3 text-2xl font-bold sm:text-3xl">
-          今日の健康運占い｜無料の健康運ガチャ
+          占いババァが占う｜今日の健康運
         </h1>
         <p className="mt-3 text-sm text-foreground-muted">
           体調管理・食事や睡眠・リフレッシュ方法のアドバイス付きで今日の健康運がわかります。

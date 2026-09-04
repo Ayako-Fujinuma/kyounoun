@@ -30,7 +30,7 @@ export default function WorkPage() {
           {dateLabel}の仕事運
         </p>
         <h1 className="mt-3 text-2xl font-bold sm:text-3xl">
-          今日の仕事運占い｜無料の仕事運ガチャ
+          占いババァが占う｜今日の仕事運
         </h1>
         <p className="mt-3 text-sm text-foreground-muted">
           集中力のヒント・人間関係・チャンスをつかむためのアドバイス付きで今日の仕事運がわかります。

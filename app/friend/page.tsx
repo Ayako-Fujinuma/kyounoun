@@ -30,7 +30,7 @@ export default function FriendPage() {
           {dateLabel}の運勢
         </p>
         <h1 className="mt-3 text-2xl font-bold sm:text-3xl">
-          あの人の今日の運勢占い｜名前占いガチャ
+          占いババァが占う｜あの人の今日の運勢
         </h1>
         <p className="mt-3 text-sm text-foreground-muted">
           今、頭に浮かんだその人の名前を入れてみてください。ばあばがこっそり教えてくれます。

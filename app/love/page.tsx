@@ -30,7 +30,7 @@ export default function LovePage() {
           {dateLabel}の恋愛運
         </p>
         <h1 className="mt-3 text-2xl font-bold sm:text-3xl">
-          今日の恋愛運占い｜無料の恋愛運ガチャ
+          占いババァが占う｜今日の恋愛運
         </h1>
         <p className="mt-3 text-sm text-foreground-muted">
           フリーの方・カップルの方・片思い中の方、それぞれへのアドバイス付きで今日の恋愛運がわかります。
