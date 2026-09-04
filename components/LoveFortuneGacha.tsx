@@ -135,6 +135,9 @@ export default function LoveFortuneGacha() {
             </button>
             <ShareButton
               text={`今日の恋愛運は「${result.rank}」でした!占いババァいわく「${result.grandmaLine}」`}
+              imageUrl={result.grandmaImage}
+              rank={result.rank}
+              hashtags={["占い", "今日の運勢", "恋愛運", "占いババァ"]}
             />
           </div>
 

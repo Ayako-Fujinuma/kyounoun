@@ -475,6 +475,15 @@ export function rankMeanings(): { key: RankKey; reading: string; summary: string
   return RANKS.map(({ key, reading, summary }) => ({ key, reading, summary }));
 }
 
+// URLの?rank=パラメータなど、外部から受け取った文字列がランクとして
+// 有効かどうかを確認しつつ、そのランクの占いババァ画像パスを返す
+export function grandmaImageForRank(rank?: string | null): string | undefined {
+  if (!rank) return undefined;
+  const isValidRank = RANKS.some((r) => r.key === rank);
+  if (!isValidRank) return undefined;
+  return GRANDMA[rank as RankKey].image;
+}
+
 // 恋愛運専用ガチャ
 
 export interface LoveFortuneResult {

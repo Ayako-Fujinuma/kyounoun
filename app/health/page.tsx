@@ -2,15 +2,44 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import HealthFortuneGacha from "@/components/HealthFortuneGacha";
 import BackHomeLink from "@/components/BackHomeLink";
+import { grandmaImageForRank } from "@/lib/fortune";
 
-export const metadata: Metadata = {
-  title: "今日の健康運占い｜占いババァが今日の健康運を無料診断",
-  description:
-    "今日の健康運を無料のガチャ形式で診断。体調管理・食事や睡眠・リフレッシュ方法のアドバイス付きで、毎日無料で楽しめる健康運占いです。",
-  alternates: {
-    canonical: "/health",
-  },
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ rank?: string }>;
+}): Promise<Metadata> {
+  const { rank } = await searchParams;
+  const image = grandmaImageForRank(rank);
+  const base = {
+    alternates: { canonical: "/health" },
+  };
+
+  if (!image) {
+    return {
+      ...base,
+      title: "今日の健康運占い｜占いババァが今日の健康運を無料診断",
+      description:
+        "今日の健康運を無料のガチャ形式で診断。体調管理・食事や睡眠・リフレッシュ方法のアドバイス付きで、毎日無料で楽しめる健康運占いです。",
+    };
+  }
+
+  const title = `今日の健康運は「${rank}」でした!｜占いババァが占う健康運`;
+  const description = `占いババァが占った今日の健康運は「${rank}」。あなたの健康運も無料でチェックできます。`;
+
+  return {
+    ...base,
+    title,
+    description,
+    openGraph: { title, description, images: [{ url: image, alt: rank as string }] },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
 
 export default function HealthPage() {
   const today = new Date();

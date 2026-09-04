@@ -2,15 +2,44 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import WorkFortuneGacha from "@/components/WorkFortuneGacha";
 import BackHomeLink from "@/components/BackHomeLink";
+import { grandmaImageForRank } from "@/lib/fortune";
 
-export const metadata: Metadata = {
-  title: "今日の仕事運占い｜占いババァが今日の仕事運を無料診断",
-  description:
-    "今日の仕事運を無料のガチャ形式で診断。集中力のヒント・人間関係・チャンスをつかむためのアドバイス付きで、毎日無料で楽しめる仕事運占いです。",
-  alternates: {
-    canonical: "/work",
-  },
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ rank?: string }>;
+}): Promise<Metadata> {
+  const { rank } = await searchParams;
+  const image = grandmaImageForRank(rank);
+  const base = {
+    alternates: { canonical: "/work" },
+  };
+
+  if (!image) {
+    return {
+      ...base,
+      title: "今日の仕事運占い｜占いババァが今日の仕事運を無料診断",
+      description:
+        "今日の仕事運を無料のガチャ形式で診断。集中力のヒント・人間関係・チャンスをつかむためのアドバイス付きで、毎日無料で楽しめる仕事運占いです。",
+    };
+  }
+
+  const title = `今日の仕事運は「${rank}」でした!｜占いババァが占う仕事運`;
+  const description = `占いババァが占った今日の仕事運は「${rank}」。あなたの仕事運も無料でチェックできます。`;
+
+  return {
+    ...base,
+    title,
+    description,
+    openGraph: { title, description, images: [{ url: image, alt: rank as string }] },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
 
 export default function WorkPage() {
   const today = new Date();
