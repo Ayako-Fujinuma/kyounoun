@@ -9,6 +9,26 @@ interface ShareButtonProps {
 export default function ShareButton({ text }: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
 
+  const shareToX = () => {
+    const url = window.location.href;
+    const params = new URLSearchParams({ text, url });
+    window.open(
+      `https://twitter.com/intent/tweet?${params.toString()}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+  };
+
+  const shareToLine = () => {
+    const url = window.location.href;
+    const params = new URLSearchParams({ url, text });
+    window.open(
+      `https://social-plugins.line.me/lineit/share?${params.toString()}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+  };
+
   const handleShare = async () => {
     const shareText = `${text}\n${window.location.href}`;
 
@@ -30,13 +50,20 @@ export default function ShareButton({ text }: ShareButtonProps) {
     }
   };
 
+  const buttonClass =
+    "rounded-full border border-accent/60 px-4 py-2 text-sm text-accent transition hover:bg-accent hover:text-slate-900";
+
   return (
-    <button
-      type="button"
-      onClick={handleShare}
-      className="rounded-full border border-accent/60 px-6 py-2 text-sm text-accent transition hover:bg-accent hover:text-slate-900"
-    >
-      {copied ? "コピーしました!" : "結果をシェアする"}
-    </button>
+    <div className="flex flex-wrap items-center justify-center gap-2">
+      <button type="button" onClick={shareToX} className={buttonClass}>
+        Xでシェア
+      </button>
+      <button type="button" onClick={shareToLine} className={buttonClass}>
+        LINEでシェア
+      </button>
+      <button type="button" onClick={handleShare} className={buttonClass}>
+        {copied ? "コピーしました!" : "結果をシェアする"}
+      </button>
+    </div>
   );
 }
