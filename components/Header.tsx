@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const CATEGORY_LINKS = [
   { href: "/", label: "総合運占い", icon: "🔮" },
@@ -10,6 +13,8 @@ const CATEGORY_LINKS = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
+
   return (
     <header className="border-b border-card-border/60">
       <div className="mx-auto max-w-3xl px-4 pt-4 sm:px-6">
@@ -35,16 +40,24 @@ export default function Header() {
         </div>
 
         <nav className="mt-3 flex gap-2 overflow-x-auto pb-3 sm:justify-center [&::-webkit-scrollbar]:hidden">
-          {CATEGORY_LINKS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="flex shrink-0 items-center gap-1.5 rounded-full border border-card-border bg-card-bg px-3 py-1.5 text-sm text-foreground-muted transition hover:border-accent/60 hover:text-accent"
-            >
-              <span aria-hidden>{item.icon}</span>
-              {item.label}
-            </Link>
-          ))}
+          {CATEGORY_LINKS.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={isActive ? "page" : undefined}
+                className={`flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm transition ${
+                  isActive
+                    ? "border-accent bg-accent text-slate-900 font-bold"
+                    : "border-card-border bg-card-bg text-foreground-muted hover:border-accent/60 hover:text-accent"
+                }`}
+              >
+                <span aria-hidden>{item.icon}</span>
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
       </div>
     </header>
