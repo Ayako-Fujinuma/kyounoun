@@ -68,7 +68,7 @@ export default function MoneyFortuneGacha() {
           className="group relative flex h-40 w-40 items-center justify-center overflow-hidden rounded-full shadow-[0_0_40px_rgba(250,204,21,0.35)] transition active:scale-95 disabled:opacity-70 sm:h-48 sm:w-48"
         >
           <span
-            className={`absolute inset-0 ${isDrawing ? "animate-[spin_0.5s_linear_infinite]" : "group-hover:scale-110"} transition`}
+            className={`absolute inset-0 ${isDrawing ? "animate-[spin_1.2s_linear_infinite]" : "group-hover:scale-110"} transition`}
           >
             <Image
               src="/images/icons/money.jpeg"
