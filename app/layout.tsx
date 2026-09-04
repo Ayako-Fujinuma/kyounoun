@@ -28,6 +28,21 @@ export const metadata: Metadata = {
     siteName: "今日の運勢ガチャ",
     locale: "ja_JP",
     type: "website",
+    images: [
+      {
+        url: "/images/ogp.jpeg",
+        width: 1376,
+        height: 768,
+        alt: "今日の運勢ガチャ",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "今日の運勢占い｜無料の運勢ガチャで今日のあなたを診断",
+    description:
+      "ボタンを押すだけで今日の運勢がわかる無料の占いサイト。恋愛運・仕事運・金運・健康運もまとめてチェック。",
+    images: ["/images/ogp.jpeg"],
   },
   alternates: {
     canonical: "/",

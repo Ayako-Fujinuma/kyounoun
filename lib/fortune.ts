@@ -12,7 +12,7 @@ export type RankKey =
 interface RankInfo {
   key: RankKey;
   weight: number;
-  emoji: string;
+  image: string;
   from: string;
   to: string;
   reading: string;
@@ -28,7 +28,7 @@ export interface CategoryResult {
 
 export interface FortuneResult {
   rank: RankKey;
-  emoji: string;
+  image: string;
   from: string;
   to: string;
   message: string;
@@ -42,7 +42,7 @@ const RANKS: RankInfo[] = [
   {
     key: "大吉",
     weight: 8,
-    emoji: "🌟",
+    image: "/images/ranks/daikichi.jpeg",
     from: "from-amber-300",
     to: "to-yellow-100",
     reading: "だいきち",
@@ -56,7 +56,7 @@ const RANKS: RankInfo[] = [
   {
     key: "中吉",
     weight: 15,
-    emoji: "✨",
+    image: "/images/ranks/chukichi.jpeg",
     from: "from-orange-300",
     to: "to-amber-100",
     reading: "ちゅうきち",
@@ -70,7 +70,7 @@ const RANKS: RankInfo[] = [
   {
     key: "小吉",
     weight: 20,
-    emoji: "🍀",
+    image: "/images/ranks/shokichi.jpeg",
     from: "from-lime-300",
     to: "to-green-100",
     reading: "しょうきち",
@@ -84,7 +84,7 @@ const RANKS: RankInfo[] = [
   {
     key: "吉",
     weight: 25,
-    emoji: "🌤️",
+    image: "/images/ranks/kichi.jpeg",
     from: "from-sky-300",
     to: "to-cyan-100",
     reading: "きち",
@@ -98,7 +98,7 @@ const RANKS: RankInfo[] = [
   {
     key: "末吉",
     weight: 17,
-    emoji: "🌥️",
+    image: "/images/ranks/suekichi.jpeg",
     from: "from-slate-300",
     to: "to-blue-100",
     reading: "すえきち",
@@ -112,7 +112,7 @@ const RANKS: RankInfo[] = [
   {
     key: "凶",
     weight: 10,
-    emoji: "🌧️",
+    image: "/images/ranks/kyo.jpeg",
     from: "from-indigo-300",
     to: "to-slate-200",
     reading: "きょう",
@@ -126,7 +126,7 @@ const RANKS: RankInfo[] = [
   {
     key: "大凶",
     weight: 5,
-    emoji: "⛈️",
+    image: "/images/ranks/daikyo.jpeg",
     from: "from-violet-400",
     to: "to-indigo-200",
     reading: "だいきょう",
@@ -265,7 +265,7 @@ export function generateFortune(seed: number): FortuneResult {
 
   return {
     rank: rank.key,
-    emoji: rank.emoji,
+    image: rank.image,
     from: rank.from,
     to: rank.to,
     message,
@@ -284,7 +284,7 @@ export function rankMeanings(): { key: RankKey; reading: string; summary: string
 
 export interface LoveFortuneResult {
   rank: RankKey;
-  emoji: string;
+  image: string;
   from: string;
   to: string;
   message: string;
@@ -352,7 +352,7 @@ export function generateLoveFortune(seed: number): LoveFortuneResult {
 
   return {
     rank: rank.key,
-    emoji: rank.emoji,
+    image: rank.image,
     from: rank.from,
     to: rank.to,
     message,
@@ -366,7 +366,7 @@ export function generateLoveFortune(seed: number): LoveFortuneResult {
 
 export interface MoneyFortuneResult {
   rank: RankKey;
-  emoji: string;
+  image: string;
   from: string;
   to: string;
   message: string;
@@ -434,7 +434,7 @@ export function generateMoneyFortune(seed: number): MoneyFortuneResult {
 
   return {
     rank: rank.key,
-    emoji: rank.emoji,
+    image: rank.image,
     from: rank.from,
     to: rank.to,
     message,
@@ -448,7 +448,7 @@ export function generateMoneyFortune(seed: number): MoneyFortuneResult {
 
 export interface WorkFortuneResult {
   rank: RankKey;
-  emoji: string;
+  image: string;
   from: string;
   to: string;
   message: string;
@@ -516,7 +516,7 @@ export function generateWorkFortune(seed: number): WorkFortuneResult {
 
   return {
     rank: rank.key,
-    emoji: rank.emoji,
+    image: rank.image,
     from: rank.from,
     to: rank.to,
     message,
@@ -530,7 +530,7 @@ export function generateWorkFortune(seed: number): WorkFortuneResult {
 
 export interface HealthFortuneResult {
   rank: RankKey;
-  emoji: string;
+  image: string;
   from: string;
   to: string;
   message: string;
@@ -598,7 +598,7 @@ export function generateHealthFortune(seed: number): HealthFortuneResult {
 
   return {
     rank: rank.key,
-    emoji: rank.emoji,
+    image: rank.image,
     from: rank.from,
     to: rank.to,
     message,

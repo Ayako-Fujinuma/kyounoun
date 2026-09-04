@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import {
   generateLoveFortune,
   seedFromString,
@@ -64,10 +65,19 @@ export default function LoveFortuneGacha() {
           type="button"
           onClick={draw}
           disabled={isDrawing}
-          className="group relative flex h-40 w-40 items-center justify-center rounded-full bg-gradient-to-br from-rose-300 to-pink-100 text-5xl shadow-[0_0_40px_rgba(244,114,182,0.35)] transition active:scale-95 disabled:opacity-70 sm:h-48 sm:w-48"
+          className="group relative flex h-40 w-40 items-center justify-center overflow-hidden rounded-full shadow-[0_0_40px_rgba(244,114,182,0.35)] transition active:scale-95 disabled:opacity-70 sm:h-48 sm:w-48"
         >
-          <span className={isDrawing ? "animate-spin" : "group-hover:scale-110 transition"}>
-            💘
+          <span
+            className={`absolute inset-0 ${isDrawing ? "animate-spin" : "group-hover:scale-110"} transition`}
+          >
+            <Image
+              src="/images/icons/love.jpg"
+              alt="今日の恋愛運を占う"
+              fill
+              sizes="(min-width: 640px) 192px, 160px"
+              className="object-cover"
+              priority
+            />
           </span>
         </button>
       )}
@@ -84,7 +94,15 @@ export default function LoveFortuneGacha() {
             className={`rounded-3xl border border-card-border bg-gradient-to-br ${result.from} ${result.to} p-6 text-center text-slate-900 shadow-xl sm:p-8`}
           >
             <p className="text-sm font-medium opacity-70">今日の恋愛運</p>
-            <p className="mt-1 text-6xl">{result.emoji}</p>
+            <div className="relative mx-auto mt-2 h-24 w-24 overflow-hidden rounded-2xl shadow-lg sm:h-28 sm:w-28">
+              <Image
+                src={result.image}
+                alt={`今日の恋愛運: ${result.rank}`}
+                fill
+                sizes="112px"
+                className="object-cover"
+              />
+            </div>
             <p className="mt-2 text-4xl font-black tracking-wide sm:text-5xl">
               {result.rank}
             </p>
