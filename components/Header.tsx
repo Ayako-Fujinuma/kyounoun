@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const CATEGORY_LINKS = [
+  { href: "/", label: "総合運占い", icon: "🔮" },
   { href: "/love", label: "恋愛運占い", icon: "💘" },
   { href: "/money", label: "金運占い", icon: "💰" },
   { href: "/work", label: "仕事運占い", icon: "💼" },
