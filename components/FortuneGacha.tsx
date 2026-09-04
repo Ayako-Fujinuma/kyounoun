@@ -20,7 +20,9 @@ function storageKey() {
 
 const CATEGORY_DETAIL_LINKS: Record<string, string> = {
   恋愛運: "/love",
+  仕事運: "/work",
   金運: "/money",
+  健康運: "/health",
 };
 
 export default function FortuneGacha() {

@@ -443,3 +443,167 @@ export function generateMoneyFortune(seed: number): MoneyFortuneResult {
     adviceWindfall: pick(ADVICE_WINDFALL, rng),
   };
 }
+
+// 仕事運専用ガチャ
+
+export interface WorkFortuneResult {
+  rank: RankKey;
+  emoji: string;
+  from: string;
+  to: string;
+  message: string;
+  adviceFocus: string;
+  adviceRelationship: string;
+  adviceChance: string;
+}
+
+const WORK_MESSAGES: Record<RankKey, string[]> = {
+  大吉: [
+    "仕事運は絶好調。大きなチャンスが舞い込みやすく、評価にもつながりそうな一日です。",
+    "アイデアが次々に浮かびそうな日。積極的に発言・提案すると良い流れに乗れそう。",
+  ],
+  中吉: [
+    "仕事運は好調。コツコツ続けてきたことに、良い結果が見え始めそうです。",
+    "周囲との連携がスムーズにいきやすい日。相談すると良いヒントがもらえそう。",
+  ],
+  小吉: [
+    "穏やかな仕事運。目立った動きはなくても、着実に信頼が積み上がる一日です。",
+    "ルーティンをこなすことが、後で評価につながりそうな日。",
+  ],
+  吉: [
+    "仕事運は安定モード。いつも通りのペースで取り組めば問題なし。",
+    "地味だけど着実。今日の積み重ねが後で効いてきそうです。",
+  ],
+  末吉: [
+    "最初は伸び悩んでも、午後以降に流れが変わりそうな一日。",
+    "焦って結果を求めず、丁寧に一つずつ進めるのが吉。",
+  ],
+  凶: [
+    "予定外のトラブルに注意。ダブルチェックを心がけると安心です。",
+    "大きな決断や新しい挑戦は、今日は見送るのが無難そう。",
+  ],
+  大凶: [
+    "仕事運は波乱含み。重要な判断や契約は今日を避けるのが安心です。",
+    "今日は無理をせず、守りの姿勢で丁寧に業務をこなして。",
+  ],
+};
+
+const ADVICE_FOCUS = [
+  "タスクを小さく分けて取り組むと、集中力が続きやすい日。",
+  "作業前に机まわりを片付けると、頭も整理されそう。",
+  "一番大事なタスクから先に手をつけると、うまく回りそう。",
+  "こまめな休憩を挟むと、後半も集中力を保てそう。",
+];
+
+const ADVICE_RELATIONSHIP = [
+  "何気ない雑談が、良いヒントやチャンスにつながるかも。",
+  "感謝の一言を伝えると、チームの空気が良くなりそう。",
+  "意見が食い違ったら、まず相手の話をじっくり聞いてみて。",
+  "困ったときは一人で抱え込まず、早めに相談すると吉。",
+];
+
+const ADVICE_CHANCE = [
+  "普段と違う仕事にも、思い切って手を挙げてみると良さそう。",
+  "小さな実績でも、まわりにアピールしておくと後で活きそう。",
+  "誰かの手伝いを買って出ると、思わぬ評価につながるかも。",
+  "気になっていた勉強や資格の情報収集を始めるのに良い日。",
+];
+
+export function generateWorkFortune(seed: number): WorkFortuneResult {
+  const rng = mulberry32(seed);
+  const rank = pickWeighted(RANKS, rng);
+  const message = pick(WORK_MESSAGES[rank.key], rng);
+
+  return {
+    rank: rank.key,
+    emoji: rank.emoji,
+    from: rank.from,
+    to: rank.to,
+    message,
+    adviceFocus: pick(ADVICE_FOCUS, rng),
+    adviceRelationship: pick(ADVICE_RELATIONSHIP, rng),
+    adviceChance: pick(ADVICE_CHANCE, rng),
+  };
+}
+
+// 健康運専用ガチャ
+
+export interface HealthFortuneResult {
+  rank: RankKey;
+  emoji: string;
+  from: string;
+  to: string;
+  message: string;
+  adviceBody: string;
+  adviceLifestyle: string;
+  adviceRefresh: string;
+}
+
+const HEALTH_MESSAGES: Record<RankKey, string[]> = {
+  大吉: [
+    "健康運は絶好調。心身ともに軽やかで、新しいことにも挑戦しやすい一日です。",
+    "体調がすこぶる良さそうな日。この調子を保つ習慣を意識してみて。",
+  ],
+  中吉: [
+    "健康運は良好。いつもより体が軽く感じられそうな一日です。",
+    "軽い運動やストレッチが、気分をすっきりさせてくれそう。",
+  ],
+  小吉: [
+    "穏やかな健康運。無理をしなければ、快適に過ごせる一日です。",
+    "いつも通りの生活リズムを守ると、調子を保ちやすい日。",
+  ],
+  吉: [
+    "健康運は安定モード。特に問題なく過ごせそうな一日です。",
+    "体調は普段通り。無理のない範囲で過ごすのがちょうど良さそう。",
+  ],
+  末吉: [
+    "朝は少し重だるくても、夕方以降に調子が上がってきそうな日。",
+    "今日は無理せず、体の声を聞きながら過ごして。",
+  ],
+  凶: [
+    "疲れがたまりやすい日。今日は早めの休息を心がけて。",
+    "無理な予定は詰め込みすぎず、体を労わる一日にして。",
+  ],
+  大凶: [
+    "体調を崩しやすい日。今日は予定を詰め込まず、静かに過ごして。",
+    "無理は禁物。今日は「休む」ことを最優先にして。",
+  ],
+};
+
+const ADVICE_BODY = [
+  "軽いストレッチで体をほぐすと、動きやすくなりそう。",
+  "こまめな水分補給を意識すると、調子が整いやすい日。",
+  "姿勢を意識するだけでも、体の軽さが変わってきそう。",
+  "少し早めに休むと、翌日のコンディションが良くなりそう。",
+];
+
+const ADVICE_LIFESTYLE = [
+  "野菜を多めに取り入れると、体が喜びそうな一日。",
+  "寝る前のスマホを少し控えると、眠りの質が上がりそう。",
+  "温かい飲み物でひと息つくと、体の巡りが良くなりそう。",
+  "食事の時間を規則正しくすると、調子が整いやすい日。",
+];
+
+const ADVICE_REFRESH = [
+  "外の空気を吸いに、少し散歩してみると気分転換になりそう。",
+  "好きな音楽を聴く時間を作ると、心が軽くなりそう。",
+  "深呼吸を意識すると、頭がすっきりしやすい一日。",
+  "湯船にゆっくり浸かると、疲れがほぐれやすそう。",
+];
+
+export function generateHealthFortune(seed: number): HealthFortuneResult {
+  const rng = mulberry32(seed);
+  const rank = pickWeighted(RANKS, rng);
+  const message = pick(HEALTH_MESSAGES[rank.key], rng);
+
+  return {
+    rank: rank.key,
+    emoji: rank.emoji,
+    from: rank.from,
+    to: rank.to,
+    message,
+    adviceBody: pick(ADVICE_BODY, rng),
+    adviceLifestyle: pick(ADVICE_LIFESTYLE, rng),
+    adviceRefresh: pick(ADVICE_REFRESH, rng),
+  };
+}

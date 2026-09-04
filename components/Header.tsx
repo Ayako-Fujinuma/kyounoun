@@ -15,6 +15,12 @@ export default function Header() {
           <Link href="/money" className="hover:text-accent">
             金運占い
           </Link>
+          <Link href="/work" className="hover:text-accent">
+            仕事運占い
+          </Link>
+          <Link href="/health" className="hover:text-accent">
+            健康運占い
+          </Link>
           <Link href="/about" className="hover:text-accent">
             このサイトについて
           </Link>

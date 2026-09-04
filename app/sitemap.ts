@@ -3,8 +3,17 @@ import type { MetadataRoute } from "next";
 const siteUrl = "https://kyounoun.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/love", "/money", "/about", "/privacy", "/contact"];
-  const dailyRoutes = new Set(["", "/love", "/money"]);
+  const routes = [
+    "",
+    "/love",
+    "/money",
+    "/work",
+    "/health",
+    "/about",
+    "/privacy",
+    "/contact",
+  ];
+  const dailyRoutes = new Set(["", "/love", "/money", "/work", "/health"]);
   return routes.map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: new Date(),
