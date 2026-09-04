@@ -2,15 +2,44 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import NameFortuneGacha from "@/components/NameFortuneGacha";
 import BackHomeLink from "@/components/BackHomeLink";
+import { grandmaImageForRank } from "@/lib/fortune";
 
-export const metadata: Metadata = {
-  title: "あの人の今日の運勢占い｜占いババァが名前だけで無料診断",
-  description:
-    "頭に浮かんだあの人の今日の運勢を、名前を入れるだけでこっそり占えます。本人には内緒で、無料でのぞいてみませんか?",
-  alternates: {
-    canonical: "/friend",
-  },
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ rank?: string }>;
+}): Promise<Metadata> {
+  const { rank } = await searchParams;
+  const image = grandmaImageForRank(rank);
+  const base = {
+    alternates: { canonical: "/friend" },
+  };
+
+  if (!image) {
+    return {
+      ...base,
+      title: "あの人の今日の運勢占い｜占いババァが名前だけで無料診断",
+      description:
+        "頭に浮かんだあの人の今日の運勢を、名前を入れるだけでこっそり占えます。本人には内緒で、無料でのぞいてみませんか?",
+    };
+  }
+
+  const title = `あの人の今日の運勢は「${rank}」でした!｜占いババァが占う`;
+  const description = `占いババァが占った、あの人の今日の運勢は「${rank}」。あなたの気になる人の運勢も無料でチェックできます。`;
+
+  return {
+    ...base,
+    title,
+    description,
+    openGraph: { title, description, images: [{ url: image, alt: rank as string }] },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
 
 export default function FriendPage() {
   const today = new Date();

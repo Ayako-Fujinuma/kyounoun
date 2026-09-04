@@ -1,5 +1,32 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import FortuneGacha from "@/components/FortuneGacha";
+import { grandmaImageForRank } from "@/lib/fortune";
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ rank?: string }>;
+}): Promise<Metadata> {
+  const { rank } = await searchParams;
+  const image = grandmaImageForRank(rank);
+  if (!image) return {};
+
+  const title = `今日の運勢は「${rank}」でした!｜占いババァが占う今日の運勢`;
+  const description = `占いババァが占った今日の運勢は「${rank}」。あなたの今日の運勢も無料でチェックできます。`;
+
+  return {
+    title,
+    description,
+    openGraph: { title, description, images: [{ url: image, alt: rank as string }] },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
 
 export default function Home() {
   const today = new Date();

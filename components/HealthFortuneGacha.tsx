@@ -135,6 +135,9 @@ export default function HealthFortuneGacha() {
             </button>
             <ShareButton
               text={`今日の健康運は「${result.rank}」でした!占いババァいわく「${result.grandmaLine}」`}
+              imageUrl={result.grandmaImage}
+              rank={result.rank}
+              hashtags={["占い", "今日の運勢", "健康運", "占いババァ"]}
             />
           </div>
 

@@ -178,6 +178,9 @@ export default function FortuneGacha() {
             </button>
             <ShareButton
               text={`今日の運勢は「${result.rank}」でした!占いババァいわく「${result.grandmaLine}」`}
+              imageUrl={result.grandmaImage}
+              rank={result.rank}
+              hashtags={["占い", "今日の運勢", "総合運", "占いババァ"]}
             />
           </div>
 

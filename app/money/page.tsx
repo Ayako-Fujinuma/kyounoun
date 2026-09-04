@@ -2,15 +2,44 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import MoneyFortuneGacha from "@/components/MoneyFortuneGacha";
 import BackHomeLink from "@/components/BackHomeLink";
+import { grandmaImageForRank } from "@/lib/fortune";
 
-export const metadata: Metadata = {
-  title: "今日の金運占い｜占いババァが今日の金運を無料診断",
-  description:
-    "今日の金運を無料のガチャ形式で診断。使い方のヒント・貯蓄の見直し・ラッキーな出来事のアドバイス付きで、毎日無料で楽しめる金運占いです。",
-  alternates: {
-    canonical: "/money",
-  },
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ rank?: string }>;
+}): Promise<Metadata> {
+  const { rank } = await searchParams;
+  const image = grandmaImageForRank(rank);
+  const base = {
+    alternates: { canonical: "/money" },
+  };
+
+  if (!image) {
+    return {
+      ...base,
+      title: "今日の金運占い｜占いババァが今日の金運を無料診断",
+      description:
+        "今日の金運を無料のガチャ形式で診断。使い方のヒント・貯蓄の見直し・ラッキーな出来事のアドバイス付きで、毎日無料で楽しめる金運占いです。",
+    };
+  }
+
+  const title = `今日の金運は「${rank}」でした!｜占いババァが占う金運`;
+  const description = `占いババァが占った今日の金運は「${rank}」。あなたの金運も無料でチェックできます。`;
+
+  return {
+    ...base,
+    title,
+    description,
+    openGraph: { title, description, images: [{ url: image, alt: rank as string }] },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
 
 export default function MoneyPage() {
   const today = new Date();

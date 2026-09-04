@@ -2,15 +2,44 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import LoveFortuneGacha from "@/components/LoveFortuneGacha";
 import BackHomeLink from "@/components/BackHomeLink";
+import { grandmaImageForRank } from "@/lib/fortune";
 
-export const metadata: Metadata = {
-  title: "今日の恋愛運占い｜占いババァが今日の恋愛運を無料診断",
-  description:
-    "今日の恋愛運を無料のガチャ形式で診断。フリーの方・カップルの方・片思い中の方それぞれへのアドバイス付きで、毎日無料で楽しめる恋愛運占いです。",
-  alternates: {
-    canonical: "/love",
-  },
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ rank?: string }>;
+}): Promise<Metadata> {
+  const { rank } = await searchParams;
+  const image = grandmaImageForRank(rank);
+  const base = {
+    alternates: { canonical: "/love" },
+  };
+
+  if (!image) {
+    return {
+      ...base,
+      title: "今日の恋愛運占い｜占いババァが今日の恋愛運を無料診断",
+      description:
+        "今日の恋愛運を無料のガチャ形式で診断。フリーの方・カップルの方・片思い中の方それぞれへのアドバイス付きで、毎日無料で楽しめる恋愛運占いです。",
+    };
+  }
+
+  const title = `今日の恋愛運は「${rank}」でした!｜占いババァが占う恋愛運`;
+  const description = `占いババァが占った今日の恋愛運は「${rank}」。あなたの恋愛運も無料でチェックできます。`;
+
+  return {
+    ...base,
+    title,
+    description,
+    openGraph: { title, description, images: [{ url: image, alt: rank as string }] },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
 
 export default function LovePage() {
   const today = new Date();
