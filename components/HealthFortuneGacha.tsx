@@ -94,15 +94,15 @@ export default function HealthFortuneGacha() {
           <div
             className={`rounded-3xl border border-card-border bg-gradient-to-br ${result.from} ${result.to} p-6 text-center text-slate-900 shadow-xl sm:p-8`}
           >
-            <p className="text-sm font-medium opacity-70">今日の健康運</p>
-            <p className="mt-2 text-4xl font-black tracking-wide sm:text-5xl">
+            <GrandmaComment image={result.grandmaImage} />
+
+            <p className="mt-4 text-sm font-medium opacity-70">今日の健康運</p>
+            <p className="mt-1 text-4xl font-black tracking-wide sm:text-5xl">
               {result.rank}
             </p>
-            <p className="mt-4 text-base leading-relaxed sm:text-lg">
-              {result.message}
+            <p className="mt-4 text-xl font-black leading-snug sm:text-2xl">
+              「{result.grandmaLine}」
             </p>
-
-            <GrandmaComment image={result.grandmaImage} line={result.grandmaLine} />
           </div>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
