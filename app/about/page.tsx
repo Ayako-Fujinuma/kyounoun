@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import { GRANDMA_NAME } from "@/lib/fortune";
 
 export const metadata: Metadata = {
   title: "運営者情報",
@@ -14,6 +16,24 @@ export default function AboutPage() {
         <section>
           <h2 className="text-base font-bold text-foreground">サイト名</h2>
           <p className="mt-1">今日の運勢ガチャ</p>
+        </section>
+
+        <section>
+          <h2 className="text-base font-bold text-foreground">
+            占い担当: {GRANDMA_NAME}
+          </h2>
+          <div className="relative mt-3 aspect-[1408/768] w-full overflow-hidden rounded-2xl border border-card-border">
+            <Image
+              src="/images/icons/grandma-group.jpeg"
+              alt={GRANDMA_NAME}
+              fill
+              sizes="(min-width: 640px) 672px, 100vw"
+              className="object-cover"
+            />
+          </div>
+          <p className="mt-3">
+            このサイトの占いを担当しているのは、ちょっぴり意地悪だけど憎めない「{GRANDMA_NAME}」。運勢のランクによって表情やセリフがコロコロ変わるので、大凶を引いた日は少しだけ覚悟しておいてください。
+          </p>
         </section>
 
         <section>
