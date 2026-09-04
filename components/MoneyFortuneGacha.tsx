@@ -95,15 +95,6 @@ export default function MoneyFortuneGacha() {
             className={`rounded-3xl border border-card-border bg-gradient-to-br ${result.from} ${result.to} p-6 text-center text-slate-900 shadow-xl sm:p-8`}
           >
             <p className="text-sm font-medium opacity-70">今日の金運</p>
-            <div className="relative mx-auto mt-2 h-24 w-24 overflow-hidden rounded-full shadow-lg sm:h-28 sm:w-28">
-              <Image
-                src={result.image}
-                alt={`今日の金運: ${result.rank}`}
-                fill
-                sizes="112px"
-                className="object-cover"
-              />
-            </div>
             <p className="mt-2 text-4xl font-black tracking-wide sm:text-5xl">
               {result.rank}
             </p>
