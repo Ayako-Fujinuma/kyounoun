@@ -24,8 +24,17 @@ export default function ContactForm() {
         method: "POST",
         body: formData,
       });
-      const result = await response.json();
-      if (result.success) {
+
+      let success = response.ok;
+      try {
+        const result = await response.json();
+        success = result.success ?? response.ok;
+      } catch {
+        // レスポンスがJSONとして読めない場合も、HTTPステータスが成功なら成功扱いにする
+        // (ブラウザ拡張機能やプロキシがレスポンス本文を書き換えるケースへの対策)
+      }
+
+      if (success) {
         setStatus("success");
         event.currentTarget.reset();
       } else {
