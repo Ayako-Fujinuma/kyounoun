@@ -10,11 +10,11 @@ export default function ShareButton({ text }: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
 
   const handleShare = async () => {
-    const url = window.location.href;
+    const shareText = `${text}\n${window.location.href}`;
 
     if (navigator.share) {
       try {
-        await navigator.share({ text, url });
+        await navigator.share({ text: shareText });
       } catch {
         // ユーザーがキャンセルした場合などは何もしない
       }
@@ -22,7 +22,7 @@ export default function ShareButton({ text }: ShareButtonProps) {
     }
 
     try {
-      await navigator.clipboard.writeText(`${text}\n${url}`);
+      await navigator.clipboard.writeText(shareText);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -36,7 +36,7 @@ export default function ShareButton({ text }: ShareButtonProps) {
       onClick={handleShare}
       className="rounded-full border border-accent/60 px-6 py-2 text-sm text-accent transition hover:bg-accent hover:text-slate-900"
     >
-      {copied ? "コピーしました!" : "結果を教える"}
+      {copied ? "コピーしました!" : "結果をSNSに投稿"}
     </button>
   );
 }
