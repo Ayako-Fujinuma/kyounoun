@@ -162,7 +162,7 @@ const RANKS: RankInfo[] = [
   },
 ];
 
-export const GRANDMA_NAME = "うらないばあば";
+export const GRANDMA_NAME = "占いババァ";
 
 const GRANDMA: Record<RankKey, { image: string; lines: string[] }> = {
   大吉: {
