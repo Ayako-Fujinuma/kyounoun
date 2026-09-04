@@ -10,6 +10,7 @@ const CATEGORY_LINKS = [
   { href: "/money", label: "金運占い", icon: "💰" },
   { href: "/work", label: "仕事運占い", icon: "💼" },
   { href: "/health", label: "健康運占い", icon: "🌿" },
+  { href: "/friend", label: "だれかを占う", icon: "👤" },
 ];
 
 export default function Header() {
