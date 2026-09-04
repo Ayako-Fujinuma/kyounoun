@@ -49,7 +49,7 @@ export default function Header() {
                 aria-current={isActive ? "page" : undefined}
                 className={`flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm transition ${
                   isActive
-                    ? "border-accent bg-accent text-slate-900 font-bold"
+                    ? "border-accent/70 bg-accent/15 text-accent font-bold"
                     : "border-card-border bg-card-bg text-foreground-muted hover:border-accent/60 hover:text-accent"
                 }`}
               >
