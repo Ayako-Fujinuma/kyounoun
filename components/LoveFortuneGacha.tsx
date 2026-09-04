@@ -94,7 +94,7 @@ export default function LoveFortuneGacha() {
             className={`rounded-3xl border border-card-border bg-gradient-to-br ${result.from} ${result.to} p-6 text-center text-slate-900 shadow-xl sm:p-8`}
           >
             <p className="text-sm font-medium opacity-70">今日の恋愛運</p>
-            <div className="relative mx-auto mt-2 h-24 w-24 overflow-hidden rounded-2xl shadow-lg sm:h-28 sm:w-28">
+            <div className="relative mx-auto mt-2 h-24 w-24 overflow-hidden rounded-full shadow-lg sm:h-28 sm:w-28">
               <Image
                 src={result.image}
                 alt={`今日の恋愛運: ${result.rank}`}
