@@ -279,3 +279,85 @@ export function generateFortune(seed: number): FortuneResult {
 export function rankMeanings(): { key: RankKey; reading: string; summary: string }[] {
   return RANKS.map(({ key, reading, summary }) => ({ key, reading, summary }));
 }
+
+// 恋愛運専用ガチャ
+
+export interface LoveFortuneResult {
+  rank: RankKey;
+  emoji: string;
+  from: string;
+  to: string;
+  message: string;
+  adviceFree: string;
+  adviceCouple: string;
+  adviceCrush: string;
+}
+
+const LOVE_MESSAGES: Record<RankKey, string[]> = {
+  大吉: [
+    "恋愛運は最高潮。運命的な出会いや告白の成功など、うれしい出来事が起こりやすい一日です。",
+    "気持ちを伝えるなら今日が絶好のタイミング。積極的な行動が良い結果につながります。",
+  ],
+  中吉: [
+    "恋愛面で嬉しい進展がありそうな日。相手からの連絡や誘いにアンテナを張っておいて。",
+    "自然体でいることが魅力につながる一日。無理に飾らず、素直な自分で過ごして。",
+  ],
+  小吉: [
+    "穏やかな愛情運。派手な展開はなくても、じんわり関係が温まる一日です。",
+    "普段のコミュニケーションを大切にすると、じわじわ距離が縮まりそう。",
+  ],
+  吉: [
+    "恋愛運は安定モード。焦らずいつも通りに過ごすのが一番の吉です。",
+    "特別なことがなくても、今日の積み重ねが後々良い縁につながりそう。",
+  ],
+  末吉: [
+    "最初は進展が薄くても、夕方以降に恋のチャンスが巡ってきそうな日。",
+    "今日は「待つ」のが吉。焦って動くより、自然な流れに身をまかせて。",
+  ],
+  凶: [
+    "すれ違いが起きやすい日。感情的にならず、一呼吸置いてから言葉を選んで。",
+    "今日は無理に距離を詰めようとせず、自分の時間を大切にして。",
+  ],
+  大凶: [
+    "恋愛面では波乱含みの一日。大事な話や決断は今日を避けるのが無難です。",
+    "今日は恋愛よりも自分自身をいたわる日に。焦らず静かに過ごして。",
+  ],
+};
+
+const ADVICE_FREE = [
+  "新しい場所やコミュニティに顔を出すと、思わぬ出会いがあるかも。",
+  "自分磨きに時間を使うと、後で良い縁を引き寄せやすくなりそう。",
+  "友人からの紹介話には、軽い気持ちで乗ってみると良さそう。",
+  "SNSでの何気ないやり取りが、意外なきっかけになるかも。",
+];
+
+const ADVICE_COUPLE = [
+  "感謝の言葉を伝えると、二人の距離がぐっと縮まりそう。",
+  "小さな記念日やサプライズを用意すると喜ばれる一日。",
+  "相手の話にじっくり耳を傾けると、絆が深まりそう。",
+  "たまには予定のない時間を一緒に過ごすのがおすすめ。",
+];
+
+const ADVICE_CRUSH = [
+  "共通の話題を見つけて、自然な会話のきっかけを作ってみて。",
+  "焦らず、まずは挨拶や短いやり取りの回数を増やしてみて。",
+  "SNSの反応など、小さなサインを見逃さないようにして。",
+  "思い切って二人だけで話せる機会を作ってみるのも良さそう。",
+];
+
+export function generateLoveFortune(seed: number): LoveFortuneResult {
+  const rng = mulberry32(seed);
+  const rank = pickWeighted(RANKS, rng);
+  const message = pick(LOVE_MESSAGES[rank.key], rng);
+
+  return {
+    rank: rank.key,
+    emoji: rank.emoji,
+    from: rank.from,
+    to: rank.to,
+    message,
+    adviceFree: pick(ADVICE_FREE, rng),
+    adviceCouple: pick(ADVICE_COUPLE, rng),
+    adviceCrush: pick(ADVICE_CRUSH, rng),
+  };
+}

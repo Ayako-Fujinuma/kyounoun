@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import {
   generateFortune,
   seedFromString,
@@ -39,6 +40,7 @@ export default function FortuneGacha() {
 
   const draw = () => {
     setIsDrawing(true);
+    setResult(null);
     window.setTimeout(() => {
       const seed = seedFromString(todayKey()) ^ (Date.now() & 0xffffffff);
       const fortune = generateFortune(seed);
@@ -96,8 +98,16 @@ export default function FortuneGacha() {
             {result.categories.map((category) => (
               <div
                 key={category.label}
-                className="rounded-2xl border border-card-border bg-card-bg p-3 text-center"
+                className="relative rounded-2xl border border-card-border bg-card-bg p-3 text-center"
               >
+                {category.label === "恋愛運" && (
+                  <Link
+                    href="/love"
+                    className="absolute top-2 right-2 text-[10px] text-accent hover:underline"
+                  >
+                    詳しく見る›
+                  </Link>
+                )}
                 <p className="text-xs text-foreground-muted">{category.label}</p>
                 <p className="mt-1 text-lg text-accent" aria-hidden>
                   {"★".repeat(category.stars)}

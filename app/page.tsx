@@ -46,8 +46,10 @@ export default function Home() {
       />
 
       <section className="text-center">
-        <p className="text-sm text-foreground-muted">{dateLabel}の運勢</p>
-        <h1 className="mt-2 text-2xl font-bold sm:text-3xl">
+        <p className="text-xl font-bold text-accent sm:text-2xl">
+          {dateLabel}の運勢
+        </p>
+        <h1 className="mt-3 text-2xl font-bold sm:text-3xl">
           今日の運勢占い｜無料の運勢ガチャ
         </h1>
         <p className="mt-3 text-sm text-foreground-muted">

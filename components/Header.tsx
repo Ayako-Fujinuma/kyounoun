@@ -9,6 +9,9 @@ export default function Header() {
           <span>今日の運勢ガチャ</span>
         </Link>
         <nav className="flex gap-4 text-sm text-foreground-muted">
+          <Link href="/love" className="hover:text-accent">
+            恋愛運占い
+          </Link>
           <Link href="/about" className="hover:text-accent">
             このサイトについて
           </Link>
