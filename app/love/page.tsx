@@ -12,17 +12,6 @@ export const metadata: Metadata = {
   },
 };
 
-const loveFaq = [
-  {
-    q: "総合運の「今日の運勢ガチャ」との違いは?",
-    a: "トップページの「今日の運勢ガチャ」は総合運・恋愛運・仕事運・金運・健康運をまとめて占うのに対し、このページは恋愛運だけをより詳しく占います。",
-  },
-  {
-    q: "片思い中でも楽しめますか?",
-    a: "はい。フリーの方・カップルの方・片思い中の方、それぞれの状況別アドバイスが表示されます。",
-  },
-];
-
 export default function LovePage() {
   const today = new Date();
   const dateLabel = new Intl.DateTimeFormat("ja-JP", {
@@ -32,26 +21,8 @@ export default function LovePage() {
     weekday: "short",
   }).format(today);
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: loveFaq.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.a,
-      },
-    })),
-  };
-
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
-
       <BackHomeLink />
 
       <section className="text-center">
@@ -83,16 +54,10 @@ export default function LovePage() {
         </p>
       </section>
 
-      <section className="mt-10">
-        <h2 className="text-lg font-bold text-foreground">よくある質問</h2>
-        <dl className="mt-4 space-y-4 text-sm">
-          {loveFaq.map((item) => (
-            <div key={item.q}>
-              <dt className="font-bold text-foreground">Q. {item.q}</dt>
-              <dd className="mt-1 text-foreground-muted">A. {item.a}</dd>
-            </div>
-          ))}
-        </dl>
+      <section className="mt-10 text-center">
+        <Link href="/faq" className="text-sm text-accent hover:underline">
+          よくある質問はこちら →
+        </Link>
       </section>
     </div>
   );
