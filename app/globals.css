@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+:root {
+  --background: #150f2e;
+  --background-2: #241a44;
+  --foreground: #f5f2ff;
+  --foreground-muted: #c9c2e0;
+  --accent: #f4c95d;
+  --accent-soft: #e8b64a;
+  --card-border: rgba(244, 201, 93, 0.25);
+  --card-bg: rgba(255, 255, 255, 0.06);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-2: var(--background-2);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-card-border: var(--card-border);
+  --color-card-bg: var(--card-bg);
+  --font-sans: var(--font-noto-sans-jp);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body {
+  background: radial-gradient(
+      circle at 20% -10%,
+      rgba(244, 201, 93, 0.12),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(123, 75, 148, 0.25),
+      transparent 40%
+    ),
+    linear-gradient(180deg, var(--background) 0%, var(--background-2) 100%);
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: var(--font-sans), "Hiragino Sans", "Yu Gothic", sans-serif;
+}
