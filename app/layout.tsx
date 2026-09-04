@@ -10,7 +10,7 @@ const notoSansJP = Noto_Sans_JP({
   weight: ["400", "500", "700", "900"],
 });
 
-const siteUrl = "https://kyounoun.vercel.app";
+const siteUrl = "https://kyounoun.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
