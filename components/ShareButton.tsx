@@ -98,7 +98,11 @@ export default function ShareButton({
       <button type="button" onClick={shareToThreads} className={buttonClass}>
         Threadsでシェア
       </button>
-      <button type="button" onClick={shareToLine} className={buttonClass}>
+      <button
+        type="button"
+        onClick={shareToLine}
+        className={`${buttonClass} sm:hidden`}
+      >
         LINEでシェア
       </button>
       <button type="button" onClick={handleShare} className={buttonClass}>
