@@ -35,6 +35,7 @@ export default function Home() {
     month: "long",
     day: "numeric",
     weekday: "short",
+    timeZone: "Asia/Tokyo",
   }).format(today);
 
   return (

@@ -48,6 +48,7 @@ export default function FriendPage() {
     month: "long",
     day: "numeric",
     weekday: "short",
+    timeZone: "Asia/Tokyo",
   }).format(today);
 
   return (

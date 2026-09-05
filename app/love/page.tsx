@@ -48,6 +48,7 @@ export default function LovePage() {
     month: "long",
     day: "numeric",
     weekday: "short",
+    timeZone: "Asia/Tokyo",
   }).format(today);
 
   return (
