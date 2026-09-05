@@ -18,6 +18,7 @@ interface RankInfo {
   reading: string;
   summary: string;
   messages: string[];
+  starRange: [number, number];
 }
 
 export interface CategoryResult {
@@ -61,6 +62,7 @@ const RANKS: RankInfo[] = [
       "今日始めたことは、長く続く良い習慣になりそう。",
       "自信を持って一歩踏み出すと、そのまま結果につながりそう。",
     ],
+    starRange: [4, 5],
   },
   {
     key: "中吉",
@@ -82,6 +84,7 @@ const RANKS: RankInfo[] = [
       "気になっていたことが、良い方向に動き出しそうな日。",
       "自然体でいるほど、物事がうまく運びそう。",
     ],
+    starRange: [4, 5],
   },
   {
     key: "小吉",
@@ -103,6 +106,7 @@ const RANKS: RankInfo[] = [
       "無理のない範囲で楽しむのが、今日はちょうど良さそう。",
       "穏やかな気持ちでいると、周りにも良い影響がありそう。",
     ],
+    starRange: [3, 4],
   },
   {
     key: "吉",
@@ -124,6 +128,7 @@ const RANKS: RankInfo[] = [
       "小さな達成感を積み重ねられそうな一日。",
       "無理せず自分のペースを大事にすると安心できそう。",
     ],
+    starRange: [3, 4],
   },
   {
     key: "末吉",
@@ -145,6 +150,7 @@ const RANKS: RankInfo[] = [
       "予定を詰め込みすぎず、余力を残しておくと吉。",
       "焦らず流れに身を任せると、案外うまく運びそう。",
     ],
+    starRange: [2, 3],
   },
   {
     key: "凶",
@@ -166,6 +172,7 @@ const RANKS: RankInfo[] = [
       "小さな苛立ちに振り回されないよう、深呼吸を意識して。",
       "無理な予定変更は避け、いつも通りを心がけて。",
     ],
+    starRange: [1, 2],
   },
   {
     key: "大凶",
@@ -187,6 +194,7 @@ const RANKS: RankInfo[] = [
       "誰かに頼れるところは頼って、無理をしないのが一番。",
       "静かに過ごせば、大きな問題にはならなさそうな一日。",
     ],
+    starRange: [1, 1],
   },
 ];
 
@@ -446,10 +454,11 @@ export function generateFortune(seed: number): FortuneResult {
   const rank = pickWeighted(RANKS, rng);
   const message = pick(rank.messages, rng);
 
+  const [starMin, starMax] = rank.starRange;
   const categories: CategoryResult[] = Object.entries(CATEGORY_COMMENTS).map(
     ([label, comments]) => ({
       label,
-      stars: Math.max(1, Math.min(5, Math.floor(rng() * 5) + 1)),
+      stars: starMin + Math.floor(rng() * (starMax - starMin + 1)),
       comment: pick(comments, rng),
     }),
   );
