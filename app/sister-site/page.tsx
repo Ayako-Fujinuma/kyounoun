@@ -20,13 +20,13 @@ export default function SisterSitePage() {
         rel="noopener noreferrer"
         className="mt-8 block overflow-hidden rounded-3xl border border-card-border bg-card-bg shadow-xl transition hover:scale-[1.01]"
       >
-        <div className="relative aspect-[1084/1451] w-full sm:aspect-[16/9]">
+        <div className="relative aspect-[1084/1451] w-full">
           <Image
             src="/images/icons/ikemen-hero.jpeg"
             alt="今日の運勢イケメン占い"
             fill
             sizes="(min-width: 640px) 672px, 100vw"
-            className="object-cover object-top"
+            className="object-cover"
           />
         </div>
         <div className="space-y-2 p-6">
