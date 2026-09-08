@@ -2,6 +2,8 @@
 
 今日の運勢ガチャ — ボタン一つで今日の運勢(総合運・恋愛運・仕事運・金運・健康運)を占える無料占いサイト。
 
+公開URL: https://kyounoun.com/
+
 ## スタック
 
 - Next.js (App Router) / TypeScript / Tailwind CSS
