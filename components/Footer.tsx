@@ -9,6 +9,9 @@ export default function Footer() {
           <Link href="/faq" className="hover:text-accent">
             よくある質問
           </Link>
+          <Link href="/sister-site" className="hover:text-accent">
+            姉妹サイト
+          </Link>
           <Link href="/about" className="hover:text-accent">
             運営者情報
           </Link>
