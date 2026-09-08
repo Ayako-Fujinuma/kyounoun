@@ -22,7 +22,7 @@ export default function SisterSitePage() {
       >
         <div className="relative aspect-[1084/1451] w-full">
           <Image
-            src="/images/icons/ikemen-hero.jpeg"
+            src="/images/icons/ikemen-hero.png"
             alt="今日の運勢イケメン占い"
             fill
             sizes="(min-width: 640px) 672px, 100vw"
