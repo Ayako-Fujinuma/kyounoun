@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/health",
     "/friend",
     "/faq",
+    "/sister-site",
     "/about",
     "/privacy",
     "/contact",
